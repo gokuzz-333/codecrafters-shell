@@ -22,17 +22,17 @@ def main():
         args=parts[1:] if len(parts)>1 else ""
 
         if builtin_commands(cmd):
-            if command=="exit":
+            if cmd=="exit":
                 break
-            elif command.startswith("echo"):
-                print(command[5:])
-            elif command.startswith("type"):
-                if cmd in ["echo","type","exit"]:
-                    print(f"{cmd} is a shell builtin")
-                elif path:= shutil.which(cmd):
-                    print(f"{cmd} is {path}")
+            elif cmd=="echo":
+                print(f"{' '.join(args)}")
+            elif cmd=="type":
+                if builtin_commands(arg[0]):
+                    print(f"{args[0]} is a shell builtin")
+                elif full_path:=execute_command(args[0]):
+                    print(f"{args[0]} is {full_path}")
                 else:
-                    print(f"{cmd} not found")
+                    print(f"{args[0]}:not found")
         elif execute_command(cmd):
             subprocess.run(parts)
         else:
