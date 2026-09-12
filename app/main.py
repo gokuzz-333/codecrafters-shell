@@ -17,6 +17,8 @@ def main():
                 print(f"{cmd} is {path}")
             else:
                 print(f"{cmd} not found")
+        elif execute_command(cmd):
+            subprocess.run(parts)
         else:
             print(f"{command}: command not found")
 
