@@ -14,7 +14,7 @@ def main():
             if path:= shutil.which(cmd):
                 print(f"{cmd} is {path}")
             elif cmd[5:] in ["echo","type","exit"]:
-                print(f"{cmd[5:]} is a shell builtin")
+                print(f"{cmd} is a shell builtin")
             else:
                 print(f"{cmd} not found")
         else:
