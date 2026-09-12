@@ -13,7 +13,7 @@ def main():
         elif command.startswith("type"):
             if cmd in ["echo","type","exit"]:
                 print(f"{cmd} is a shell builtin")
-            if path:= shutil.which(cmd):
+            elif path:= shutil.which(cmd):
                 print(f"{cmd} is {path}")
             else:
                 print(f"{cmd} not found")
