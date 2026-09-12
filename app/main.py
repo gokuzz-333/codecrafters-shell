@@ -32,7 +32,7 @@ def main():
                 elif full_path:=execute_command(args[0]):
                     print(f"{args[0]} is {full_path}")
                 else:
-                    print(f"{args[0]}:not found")
+                    print(f"{args[0]}: not found")
         elif execute_command(cmd):
             subprocess.run(parts)
         else:
