@@ -4,13 +4,18 @@ def execute_command(c):
     for d in os.get_exec_path():
         if os.access(fullpath:=os.path.join(d,c),os.X_OK):
             return fullpath
+
+        
 def builtin_commands(c):
     return c in {"echo","exit","type"}
+
+
 def main():
     while True:
         sys.stdout.write("$ ")
-        command=input()
-        cmd=command[5:]
+        command=input().strip()
+        if not command:
+            continue
 
         parts=command.split()
         cmd=parts[0]
