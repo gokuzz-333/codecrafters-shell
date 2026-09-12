@@ -2,7 +2,7 @@ import sys
 import shutil,subprocess,os
 def execute_command(c):
     for d in os.get_exec_path():
-        if os.acess(fullpath:=os.path.join(d,c),os.X_OK):
+        if os.access(fullpath:=os.path.join(d,c),os.X_OK):
             return fullpath
 def main():
     while True:
