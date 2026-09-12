@@ -7,7 +7,7 @@ def execute_command(c):
 
         
 def builtin_commands(c):
-    return c in {"echo","exit","type","pwd"}
+    return c in {"echo","exit","type","pwd","cd"}
 
 
 def main():
@@ -28,6 +28,8 @@ def main():
                 print(f"{' '.join(args)}")
             elif cmd=="pwd":
                 print(os.getcwd())
+            elif cmd=="cd":
+                os.chdir(args[0])
             elif cmd=="type":
                 if builtin_commands(args[0]):
                     print(f"{args[0]} is a shell builtin")
