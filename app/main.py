@@ -27,7 +27,7 @@ def main():
             elif cmd=="echo":
                 print(f"{' '.join(args)}")
             elif cmd=="type":
-                if builtin_commands(arg[0]):
+                if builtin_commands(args[0]):
                     print(f"{args[0]} is a shell builtin")
                 elif full_path:=execute_command(args[0]):
                     print(f"{args[0]} is {full_path}")
