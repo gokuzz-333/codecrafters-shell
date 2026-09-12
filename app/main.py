@@ -12,7 +12,7 @@ def main():
 
         parts=command.split()
         cmd=parts[0]
-        args=part[1:] if len(parts)>1 else ""
+        args=parts[1:] if len(parts)>1 else ""
 
 
         if command=="exit":
