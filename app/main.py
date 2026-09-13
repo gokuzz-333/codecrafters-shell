@@ -13,19 +13,27 @@ def builtin_commands(c):
 def parse_command(text):
     parts=[]
     current=""
-    in_quotes=False
+    quote=""
     i=0
 
     while i<len(text):
-        if text[i]=="'":
-            in_quotes=not in_quotes
+
+        if text[i]=="'" or text[i]=='"':
+            if quote=="":
+                quote=text[i]
+            elif quote==text[i]:
+                quote=""
+            else:
+                current+=text[i]
+
         elif text[i]==" ":
-            if in_quotes:
+            if quote!="":
                 current+=" "
             else:
                 if current!="":
                     parts.append(current)
                     current=""
+                    
         else:
             current+=text[i]
         i+=1
