@@ -49,8 +49,7 @@ def main():
                 break
 
             elif cmd=="echo":
-                text=command[5:]
-                print(parse_command(text).strip())
+                print(" ".join(args))
 
             elif cmd=="pwd":
                 print(os.getcwd())
