@@ -35,7 +35,7 @@ def main():
                 try:
                     os.chdir(args[0])
                 except FileNotFoundError:
-                    print(f"cd: <{args[0]}>: No such file or directory")
+                    print(f"cd: {args[0]}: No such file or directory")
 
             elif cmd=="type":
                
@@ -48,7 +48,7 @@ def main():
 
         elif execute_command(cmd):
             subprocess.run(parts)
-            
+
         else:
             print(f"{command}: command not found")
 
