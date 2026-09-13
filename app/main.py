@@ -40,7 +40,7 @@ def main():
         if not command:
             continue
 
-        parts=command.parse_command(command)
+        parts=parse_command(command)
         cmd=parts[0]
         args=parts[1:]
 
