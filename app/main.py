@@ -11,40 +11,52 @@ def builtin_commands(c):
     return c in {"echo","exit","type","pwd","cd"}
 
 def parse_command(text):
-    parts=[]
-    current=""
-    quote=""
-    i=0
+    parts = []
+    current = ""
+    quote = ""
+    i = 0
 
-    while i<len(text):
-        if text[i]=='\\' and quote=="":
-            i+=1
-            current+=text[i]
-            
+    while i < len(text):
 
-        elif text[i]=="\\" and quote=='"':
-            if i+1<len(text) and text[i+1]
-        elif text[i]=="'" or text[i]=='"':
-            if quote=="":
-                quote=text[i]
-            elif quote==text[i]:
-                quote=""
+        # Backslash outside quotes
+        if text[i] == "\\" and quote == "":
+            i += 1
+            current += text[i]
+
+        # Backslash inside double quotes
+        elif text[i] == "\\" and quote == '"':
+            if i + 1 < len(text) and text[i + 1] in ['"', '\\']:
+                i += 1
+                current += text[i]
             else:
-                current+=text[i]
+                current += text[i]
 
-        elif text[i]==" ":
-            if quote!="":
-                current+=" "
+        # Quote
+        elif text[i] == "'" or text[i] == '"':
+            if quote == "":
+                quote = text[i]
+            elif quote == text[i]:
+                quote = ""
             else:
-                if current!="":
+                current += text[i]
+
+        # Space
+        elif text[i] == " ":
+            if quote != "":
+                current += " "
+            else:
+                if current != "":
                     parts.append(current)
-                    current=""
-                    
+                    current = ""
+
         else:
-            current+=text[i]
-        i+=1
-    if current!="":
+            current += text[i]
+
+        i += 1
+
+    if current != "":
         parts.append(current)
+
     return parts
 
 def main():
