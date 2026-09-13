@@ -26,7 +26,10 @@ def main():
                 break
 
             elif cmd=="echo":
-                print(f"{' '.join(args)}")
+                text=command[5:]
+                if text.startswith("'") and text.endswith("'"):
+                    text=text[1:-1]
+                print(text)
 
             elif cmd=="pwd":
                 print(os.getcwd())
