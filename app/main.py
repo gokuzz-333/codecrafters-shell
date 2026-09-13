@@ -17,7 +17,9 @@ def parse_command(text):
     i=0
 
     while i<len(text):
-
+        if text[i]=='\\' and quote=="":
+            i+=1
+            current+=text[i]
         if text[i]=="'" or text[i]=='"':
             if quote=="":
                 quote=text[i]
