@@ -33,7 +33,7 @@ def main():
 
             elif cmd=="cd":
                 try:
-                    os.chdir(args[0])
+                    os.chdir(os.path.expanduser(args[0]))
                 except FileNotFoundError:
                     print(f"cd: {args[0]}: No such file or directory")
 
