@@ -1,5 +1,6 @@
 import sys
 import shutil,subprocess,os
+
 def execute_command(c):
     for d in os.get_exec_path():
         if os.access(fullpath:=os.path.join(d,c),os.X_OK):
@@ -9,28 +10,28 @@ def execute_command(c):
 def builtin_commands(c):
     return c in {"echo","exit","type","pwd","cd"}
 
-def parse_echo(text):
-    result=""
-    i=0
+def parse_command(text):
+    parts=[]
+    current=""
     in_quotes=False
+    i=0
 
     while i<len(text):
-
         if text[i]=="'":
             in_quotes=not in_quotes
-
         elif text[i]==" ":
             if in_quotes:
-                result+=" "
-
+                current+=" "
             else:
-                if result!="" and result[-1]!=" ":
-                    result+=" "
+                if current!="":
+                    parts.append(current)
+                    current=""
         else:
-            result+=text[i]
+            current+=text[i]
         i+=1
-
-    return result
+    if current!="":
+        parts.append(current)
+    return parts
 
 def main():
     while True:
@@ -39,7 +40,7 @@ def main():
         if not command:
             continue
 
-        parts=command.split()
+        parts=command.parse_command(command)
         cmd=parts[0]
         args=parts[1:]
 
@@ -49,7 +50,7 @@ def main():
 
             elif cmd=="echo":
                 text=command[5:]
-                print(parse_echo(text).strip())
+                print(parse_command(text).strip())
 
             elif cmd=="pwd":
                 print(os.getcwd())
