@@ -20,6 +20,10 @@ def parse_command(text):
         if text[i]=='\\' and quote=="":
             i+=1
             current+=text[i]
+            
+
+        elif text[i]=="\\" and quote=='"':
+            if i+1<len(text) and text[i+1]
         elif text[i]=="'" or text[i]=='"':
             if quote=="":
                 quote=text[i]
