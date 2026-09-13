@@ -26,11 +26,12 @@ def parse_echo(text):
             else:
                 if result!="" and result[-1]!=" ":
                     result+=" "
-                else:
-                    result+=text[i]
-                i+=1
+        else:
+            result+=text[i]
+        i+=1
 
-            return result
+    return result
+
 def main():
     while True:
         sys.stdout.write("$ ")
