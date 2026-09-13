@@ -13,19 +13,24 @@ def parse_echo(text):
     result=""
     i=0
     in_quotes=False
+
     while i<len(text):
+
         if text[i]=="'":
             in_quotes=not in_quotes
+
         elif text[i]==" ":
             if in_quotes:
                 result+=" "
+
             else:
                 if result!="" and result[-1]!=" ":
                     result+=" "
                 else:
                     result+=text[i]
                 i+=1
-                return result
+
+            return result
 def main():
     while True:
         sys.stdout.write("$ ")
