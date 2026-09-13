@@ -19,7 +19,7 @@ def main():
 
         parts=command.split()
         cmd=parts[0]
-        args=parts[1:] if len(parts)>1 else ""
+        args=parts[1:]
 
         if builtin_commands(cmd):
             if cmd=="exit":
@@ -31,6 +31,10 @@ def main():
             elif cmd=="cd":
                 os.chdir(args[0])
             elif cmd=="type":
+                try:
+                    os.chdir(args[0])
+                except FileNotFoundError:
+                    print(f"cd: <{args[0]}>: No such file or directory")
                 if builtin_commands(args[0]):
                     print(f"{args[0]} is a shell builtin")
                 elif full_path:=execute_command(args[0]):
